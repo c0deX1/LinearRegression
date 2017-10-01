@@ -1,0 +1,58 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        
+        xmlns:cT="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" x:Class="Regression.MainWindow"
+        
+        Title="MainWindow" Height="397.761" Width="1296.664">
+    <Window.Resources>
+        <Style x:Key="customStyle" TargetType="cT:LineSeries">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="cT:LineSeries">
+                        <Canvas x:Name="PlotArea">
+                            <Polyline Points="{TemplateBinding Points}" StrokeThickness="2" Style="{TemplateBinding PolylineStyle}"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,0,73,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="411*"/>
+            <ColumnDefinition Width="226*"/>
+        </Grid.ColumnDefinitions>
+        <cT:Chart Name="Graph" Background="Azure" Margin="33,35,6,57">
+            <cT:Chart.Series>
+                <cT:LineSeries Name="Gr1" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}" Style="{StaticResource customStyle}">
+                    <cT:LineSeries.Background>
+                        <RadialGradientBrush Center="0.075,0.015" GradientOrigin="-0.1,-0.1" RadiusY="0.9" RadiusX="1.05">
+                            <GradientStop Color="#FFB9D6F7"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </RadialGradientBrush>
+                    </cT:LineSeries.Background>
+                </cT:LineSeries>
+                <cT:LineSeries Name="Gr2" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+
+                    <cT:LineSeries.Background>
+                        <RadialGradientBrush Center="0.075,0.015" GradientOrigin="-0.1,-0.1" RadiusY="0.9" RadiusX="1.05">
+                            <GradientStop Color="#FF151515"/>
+                            <GradientStop Color="#FF0F0F0F" Offset="1"/>
+                        </RadialGradientBrush>
+                    </cT:LineSeries.Background>
+                </cT:LineSeries>
+            </cT:Chart.Series>
+        </cT:Chart>
+        <Label Content="R" HorizontalAlignment="Left" Margin="109,49,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="17"/>
+        <Label Content="Equation" HorizontalAlignment="Left" Margin="109,74,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="57"/>
+        <Label x:Name="labelEq" Content="" HorizontalAlignment="Left" Margin="189,74,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="221"/>
+        <Button x:Name="B1" Content="OpenFile" HorizontalAlignment="Left" Margin="105,239,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Column="1" Height="20"/>
+        <Label x:Name="labelR" Content="" HorizontalAlignment="Left" Margin="189,49,0,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="221"/>
+        <ComboBox Name="comboValues1" Grid.Column="1" HorizontalAlignment="Left" Margin="109,140,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
+        <ComboBox Name="comboValues2" Grid.Column="1" HorizontalAlignment="Left" Margin="109,182,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
+        <Button x:Name="B2" Content="Calculate" Grid.Column="1" HorizontalAlignment="Left" Margin="206,239,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.907,0" Click="Button_Click_1"/>
+        <Label x:Name="Varible" Content="Varible" Grid.Column="1" HorizontalAlignment="Left" Margin="49,140,0,0" VerticalAlignment="Top"/>
+        <Label Content="Constant" Grid.Column="1" HorizontalAlignment="Left" Margin="49,182,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.158,-0.308"/>
+    </Grid>
+</Window>
